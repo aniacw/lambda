@@ -21,7 +21,8 @@ public class Main {
                 new Person("Tony", "Jones", "tonyj@gmail.com", 35)
         ));
 
-        applyAll
+
+        getOlder.applyAll(personList, getOlder);
 
         System.out.println("Unsorted:");
         for (Person p : personList) {

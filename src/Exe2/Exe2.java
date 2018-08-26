@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 
 public class Exe2 {
 
-    Predicate<Collection<String>> negate(Predicate<Collection<String>>){
+   // Predicate<Collection<String>> negate(Predicate<Collection<String>>){
 
-    }
+  //  }
 
 }
 

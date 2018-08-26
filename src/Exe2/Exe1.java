@@ -10,7 +10,7 @@ public class Exe1 {
         return n;
     }
 
-    UnaryOperator<Integer> sum = (x -> )
+    //UnaryOperator<Integer> sum = (x -> )
 
 }
 

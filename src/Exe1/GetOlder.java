@@ -1,5 +1,6 @@
 package Exe1;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class GetOlder implements Consumer<Person> {
@@ -12,6 +13,12 @@ public class GetOlder implements Consumer<Person> {
             person.setAge(person.getAge() + 1);
         if (person.getAge() >= 18)
             isOlderThan18 = true;
+    }
+
+    public void applyAll(List<Person> list, GetOlder g){
+        for (Person p: list) {
+            accept(p);
+        }
     }
 
     @Override
