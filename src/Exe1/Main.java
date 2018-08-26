@@ -1,25 +1,27 @@
 package Exe1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
+        GetOlder getOlder = new GetOlder();
+
+
         List<Person> personList = new ArrayList(Arrays.asList(
-                new Person("John", "Smith", "john@gmail.com", 30),
+                new Person("John", "Smith", "john111111111111111@gmail.com", 30),
                 new Person("John", "Jackson", "katie1@gmail.com", 33),
                 new Person("Jennifer", "Aniston", "jenny9@hotmail.com", 27),
                 new Person("Monica", "Geller", "mgeller@gmail.com", 29),
                 new Person("Chandler", "Bing", "mrbing@gmail.com", 32),
-                new Person("Ross", "Geller", "rossgel@hotmail.com", 33),
+                new Person("Ross", "Geller", "rossgel@hotmail.com", 15),
                 new Person("Rachel", "Green", "rgreen@hotmail.com", 29),
-                new Person("Phoebe", "Buffet", "pbuff@gmail.com", 34),
-                new Person("Joey", "Tribianni", "joey@hotmail.com", 26),
+                new Person("Phoebe", "Buffet", "pbuff@gmail.com", 17),
+                new Person("Joey", "Tribianni", "joey@hotmail.com", 18),
                 new Person("Tony", "Jones", "tonyj@gmail.com", 35)
         ));
+
+        applyAll
 
         System.out.println("Unsorted:");
         for (Person p : personList) {
@@ -54,7 +56,6 @@ public class Main {
             System.out.println(p);
         }
 
-
         personList.sort(new Comparator<Person>() {
             @Override
             public int compare(Person o1, Person o2) {
@@ -78,11 +79,47 @@ public class Main {
                     return -1;
                 else
                     return 0;
-            }});
+            }
+        });
 
         System.out.println("Sorted by email containing name or surname (first):");
-        for(Person p :personList) {
-                System.out.println(p);
-            }
+        for (Person p : personList) {
+            System.out.println(p);
+        }
+
+        personList.sort((Person o1, Person o2) -> o2.getAge() - o1.getAge());
+
+        personList.sort((o1, o2) -> o2.getName().compareTo(o1.getName()));//zle
+
+        personList.sort((o1, o2) -> (o1.getName().length() + o1.getSurname().length()) -
+                (o2.getName().length() + o2.getSurname().length() ));
+
+        personList.removeIf(person -> person.getAge() < 18);
+
+        System.out.println("Removed younger than 18:");
+        for (Person p : personList) {
+            System.out.println(p);
+        }
+
+        int longestEmail = personList.get(0).getEmail().length();
+
+        for(int i = 1; i < personList.size()-1; i++){
+            if(personList.get(i).getEmail().length() > longestEmail)
+                longestEmail = personList.get(i).getEmail().length();
+        }
+
+        final int longestEmailfound = longestEmail;
+
+        personList.removeIf(person -> person.getEmail().length() == longestEmailfound);
+
+
+        //personList.removeIf(Collections.max(personList, Comparator.comparing()))
+
+        System.out.println("Removed person with the longest email:");
+        for (Person p : personList) {
+            System.out.println(p);
         }
     }
+
+
+}

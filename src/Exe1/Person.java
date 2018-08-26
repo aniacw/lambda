@@ -28,6 +28,10 @@ public class Person {
         return email;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -38,6 +42,12 @@ public class Person {
                 '}';
     }
 }
+
+//    Napisz funkcję
+//    void applyAll( List<Person> list, void(Person)... functions )
+//        która ma argumenty: lista osób i dowolna ilość funkcji, z których każda ma być wywołana na każdym elemencie listy
+//        Np możemy użyć jej tak, że przekazujemy listę i 2 funkcje: jedna zwiększa wiek o 1, druga czyści pole email.
+//
 
 
 //    Napisz prostą klasę Person, mającą name, surname, age, email
