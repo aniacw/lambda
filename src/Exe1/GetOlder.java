@@ -5,14 +5,13 @@ import java.util.function.Consumer;
 
 public class GetOlder implements Consumer<Person> {
 
-    Boolean isOlderThan18 = false;
+    private int over18;
 
     @Override
     public void accept(Person person) {
-        if (person.getAge() < 18)
             person.setAge(person.getAge() + 1);
-        if (person.getAge() >= 18)
-            isOlderThan18 = true;
+        if(person.getAge() > 18)
+            over18++;
     }
 
     public void applyAll(List<Person> list, GetOlder g){

@@ -42,14 +42,21 @@ public class Main {
             System.out.println(p);
         }
 
+//        personList.sort(new Comparator<Person>() {
+//            @Override
+//            public int compare(Person o1, Person o2) {
+//                int n;
+//                n = o1.getName().compareTo(o2.getName());
+//                if (n == 0)
+//                    n = o1.getSurname().compareTo(o2.getSurname());
+//                return n;
+//            }
+//        });
+
         personList.sort(new Comparator<Person>() {
             @Override
             public int compare(Person o1, Person o2) {
-                int n;
-                n = o1.getName().compareTo(o2.getName());
-                if (n == 0)
-                    n = o1.getSurname().compareTo(o2.getSurname());
-                return n;
+                return (o1.getName()+o1.getSurname()).compareTo(o2.getName()+o2.getSurname());
             }
         });
 
@@ -90,16 +97,32 @@ public class Main {
         }
 
         //another age sort
-        personList.sort((Person o1, Person o2) -> o2.getAge() - o1.getAge());
+        personList.sort((Person o1, Person o2) -> o1.getAge() - o2.getAge());
+
+        System.out.println("Sorted by age (lambda):");
+        for (Person p : personList) {
+            System.out.println(p);
+        }
 
         //yet another age sort
 
 
         //
-        personList.sort((o1, o2) -> o2.getName().compareTo(o1.getName()));//zle
+        personList.sort((o1, o2) -> (o1.getName()+o1.getSurname()).compareTo(o2.getName()+o2.getSurname()));
+
+        System.out.println("Sorted by name+surname alph lambda");
+        for (Person p : personList) {
+            System.out.println(p);
+        }
 
         personList.sort((o1, o2) -> (o1.getName().length() + o1.getSurname().length()) -
-                (o2.getName().length() + o2.getSurname().length() )); //a co tu jest nie tak?
+                (o2.getName().length() + o2.getSurname().length() ));
+
+        System.out.println("Sorted by name+surname length lambda");
+        for (Person p : personList) {
+            System.out.println(p);
+        }
+
 
 
         //remove under 18
@@ -107,7 +130,7 @@ public class Main {
 
         //another remove under 18
         Person p = new Person();
-       personList.removeIf( p.verifyAge( person -> person.getAge() <18));
+        personList.removeIf( p.verifyAge( person -> person.getAge() <18));
 
         System.out.println("Removed under 18:");
         for (Person p : personList) {
@@ -126,7 +149,7 @@ public class Main {
         personList.removeIf(person -> person.getEmail().length() == longestEmailfound);
 
 
-        //personList.removeIf(Collections.max(personList, Comparator.comparing()))
+        personList.removeIf(Collections.max(personList, Comparator.comparing(person -> person.getEmail().length())));
 
         System.out.println("Removed person with the longest email:");
         for (Person p : personList) {
