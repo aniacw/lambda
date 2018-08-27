@@ -1,5 +1,8 @@
 package Exe1;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 public class Person {
 
     private String name, surname, email;
@@ -10,6 +13,9 @@ public class Person {
         this.surname = surname;
         this.email = email;
         this.age = age;
+    }
+
+    public Person() {
     }
 
     public int getAge() {
@@ -40,6 +46,11 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public void verifyAge(List<Person> personList, Predicate<Person> ageVerifier ){
+        for(Person p : personList)
+            ageVerifier.test(p);
     }
 }
 

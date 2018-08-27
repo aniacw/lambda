@@ -1,6 +1,7 @@
 package Exe1;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -88,16 +89,27 @@ public class Main {
             System.out.println(p);
         }
 
+        //another age sort
         personList.sort((Person o1, Person o2) -> o2.getAge() - o1.getAge());
 
+        //yet another age sort
+
+
+        //
         personList.sort((o1, o2) -> o2.getName().compareTo(o1.getName()));//zle
 
         personList.sort((o1, o2) -> (o1.getName().length() + o1.getSurname().length()) -
-                (o2.getName().length() + o2.getSurname().length() ));
+                (o2.getName().length() + o2.getSurname().length() )); //a co tu jest nie tak?
 
+
+        //remove under 18
         personList.removeIf(person -> person.getAge() < 18);
 
-        System.out.println("Removed younger than 18:");
+        //another remove under 18
+        Person p = new Person();
+       personList.removeIf( p.verifyAge( person -> person.getAge() <18));
+
+        System.out.println("Removed under 18:");
         for (Person p : personList) {
             System.out.println(p);
         }
