@@ -48,10 +48,7 @@ public class Person {
                 '}';
     }
 
-    public void verifyAge(List<Person> personList, Predicate<Person> ageVerifier ){
-        for(Person p : personList)
-            ageVerifier.test(p);
-    }
+
 }
 
 //    Napisz funkcję

@@ -1,7 +1,6 @@
 package Exe1;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -80,12 +79,12 @@ public class Main {
         personList.sort(new Comparator<Person>() {
             @Override
             public int compare(Person o1, Person o2) {
-                boolean o1Contains = o1.getEmail().contains(o1.getName()) || o1.getEmail().contains(o1.getSurname());
-                boolean o2Contains = o2.getEmail().contains(o2.getName()) || o2.getEmail().contains(o2.getSurname());
+                boolean o1Contains = o1.getEmail().contains(o1.getName().toLowerCase()) || o1.getEmail().contains(o1.getSurname().toLowerCase());
+                boolean o2Contains = o2.getEmail().contains(o2.getName().toLowerCase()) || o2.getEmail().contains(o2.getSurname().toLowerCase());
                 if (o1Contains && !o2Contains)
-                    return 1;
-                else if (!o1Contains && o2Contains)
                     return -1;
+                else if (!o1Contains && o2Contains)
+                    return 1;
                 else
                     return 0;
             }
@@ -104,8 +103,6 @@ public class Main {
             System.out.println(p);
         }
 
-        //yet another age sort
-
 
         //
         personList.sort((o1, o2) -> (o1.getName()+o1.getSurname()).compareTo(o2.getName()+o2.getSurname()));
@@ -123,20 +120,15 @@ public class Main {
             System.out.println(p);
         }
 
-
-
         //remove under 18
         personList.removeIf(person -> person.getAge() < 18);
-
-        //another remove under 18
-        Person p = new Person();
-        personList.removeIf( p.verifyAge( person -> person.getAge() <18));
 
         System.out.println("Removed under 18:");
         for (Person p : personList) {
             System.out.println(p);
         }
 
+        //longest email removal
         int longestEmail = personList.get(0).getEmail().length();
 
         for(int i = 1; i < personList.size()-1; i++){
@@ -148,8 +140,7 @@ public class Main {
 
         personList.removeIf(person -> person.getEmail().length() == longestEmailfound);
 
-
-        personList.removeIf(Collections.max(personList, Comparator.comparing(person -> person.getEmail().length())));
+     //   personList.removeIf(Collections.max(personList, Comparator.comparing(person -> person.getEmail().length())));
 
         System.out.println("Removed person with the longest email:");
         for (Person p : personList) {

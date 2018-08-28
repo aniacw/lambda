@@ -5,19 +5,22 @@ import java.util.function.Consumer;
 
 public class GetOlder implements Consumer<Person> {
 
-    private int over18;
+    private int adultsNumber;
 
     @Override
     public void accept(Person person) {
-            person.setAge(person.getAge() + 1);
-        if(person.getAge() > 18)
-            over18++;
+        person.setAge(person.getAge() + 1);
+        if (person.getAge() > 18)
+            adultsNumber++;
     }
 
-    public void applyAll(List<Person> list, GetOlder g){
-        for (Person p: list) {
+    public int getAdultsNumber() {
+        return adultsNumber;
+    }
+
+    public void applyAll(List<Person> list, Consumer<Person> personConsumer) {
+        for (Person p : list)
             accept(p);
-        }
     }
 
     @Override
