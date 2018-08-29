@@ -18,7 +18,7 @@ public class GetOlder implements Consumer<Person> {
         return adultsNumber;
     }
 
-    public void applyAll(List<Person> list, Consumer<Person> personConsumer) {
+    public void applyAll(List<Person> list) {
         for (Person p : list)
             accept(p);
     }
